@@ -7,7 +7,6 @@ export class AnimationControl{
     private instance:Vue;
     private app: PIXI.Application;
     private loader: PIXI.Loader;
-    private canvasId: string = "canvas"
     private minWidth: number = 0
     private touch: any = undefined
     private stage: number = 0;
@@ -20,7 +19,6 @@ export class AnimationControl{
 			transparent: false, 
 			resolution: 1
         });
-        this.app.view.id = this.canvasId
         this.instance.$el.appendChild(this.app.view)
         this.loader = new PIXI.Loader();
         this.loader.add("1.jpg").add("2.jpg")
@@ -29,7 +27,7 @@ export class AnimationControl{
 
     bindTouch(){
         this.touch = new PhyTouch({
-            touch:"#app",
+            touch:"#canvas",
             vertical: false,
             property: "translateX",
             value: this.app.stage.x,
@@ -70,7 +68,8 @@ export class AnimationControl{
             this.stage = 1;
             this.minWidth = -this.app.stage.width + window.innerWidth
             this.bindTouch()
-        }, 5000)
+            this.touch.to(this.minWidth, 10000)
+        }, 2000)
     }
 
     onChange(value: number){

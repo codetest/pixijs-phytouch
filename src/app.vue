@@ -1,5 +1,5 @@
 ﻿<template>
-    <div id="app">
+    <div id="canvas">
     </div>
 </template>
 <script lang="ts">

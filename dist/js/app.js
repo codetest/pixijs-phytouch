@@ -47565,7 +47565,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "app" } })
+  return _c("div", { attrs: { id: "canvas" } })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -60136,7 +60136,6 @@ __webpack_require__.r(__webpack_exports__);
 var AnimationControl = /** @class */ (function () {
     function AnimationControl(instance) {
         var _this = this;
-        this.canvasId = "canvas";
         this.minWidth = 0;
         this.touch = undefined;
         this.stage = 0;
@@ -60148,7 +60147,6 @@ var AnimationControl = /** @class */ (function () {
             transparent: false,
             resolution: 1
         });
-        this.app.view.id = this.canvasId;
         this.instance.$el.appendChild(this.app.view);
         this.loader = new pixi_js__WEBPACK_IMPORTED_MODULE_0__["Loader"]();
         this.loader.add("1.jpg").add("2.jpg")
@@ -60157,7 +60155,7 @@ var AnimationControl = /** @class */ (function () {
     AnimationControl.prototype.bindTouch = function () {
         var _this = this;
         this.touch = new _PhyTouchExtend__WEBPACK_IMPORTED_MODULE_2___default.a({
-            touch: "#app",
+            touch: "#canvas",
             vertical: false,
             property: "translateX",
             value: this.app.stage.x,
@@ -60196,7 +60194,8 @@ var AnimationControl = /** @class */ (function () {
             _this.stage = 1;
             _this.minWidth = -_this.app.stage.width + window.innerWidth;
             _this.bindTouch();
-        }, 5000);
+            _this.touch.to(_this.minWidth, 10000);
+        }, 2000);
     };
     AnimationControl.prototype.onChange = function (value) {
         if (!this.touch) {
